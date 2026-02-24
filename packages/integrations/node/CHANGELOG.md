@@ -1,5 +1,11 @@
 # @astrojs/node
 
+## 10.0.0-beta.5
+
+### Patch Changes
+
+- [#15585](https://github.com/withastro/astro/pull/15585) [`98ea30c`](https://github.com/withastro/astro/commit/98ea30c56d6d317d76e2290ed903f11961204714) Thanks [@matthewp](https://github.com/matthewp)! - Add a default body size limit for server actions to prevent oversized requests from exhausting memory.
+
 ## 10.0.0-beta.4
 
 ### Patch Changes

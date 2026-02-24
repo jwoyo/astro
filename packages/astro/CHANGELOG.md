@@ -1,5 +1,53 @@
 # astro
 
+## 6.0.0-beta.15
+
+### Minor Changes
+
+- [#15543](https://github.com/withastro/astro/pull/15543) [`d43841d`](https://github.com/withastro/astro/commit/d43841dfa8998c4dc1a510a2b120fedbd9ce77c6) Thanks [@Princesseuh](https://github.com/Princesseuh)! - Adds a new `experimental.rustCompiler` flag to opt into the experimental Rust-based Astro compiler
+
+  This experimental compiler is faster, provides better error messages, and generally has better support for modern JavaScript, TypeScript, and CSS features.
+
+  After enabling in your Astro config, the `@astrojs/compiler-rs` package must also be installed into your project separately:
+
+  ```js
+  import { defineConfig } from 'astro/config';
+
+  export default defineConfig({
+    experimental: {
+      rustCompiler: true,
+    },
+  });
+  ```
+
+  This new compiler is still in early development and may exhibit some differences compared to the existing Go-based compiler. Notably, this compiler is generally more strict in regard to invalid HTML syntax and may throw errors in cases where the Go-based compiler would have been more lenient. For example, unclosed tags (e.g. `<p>My paragraph`) will now result in errors.
+
+  For more information about using this experimental feature in your project, especially regarding expected differences and limitations, please see the [experimental Rust compiler reference docs](https://v6.docs.astro.build/en/reference/experimental-flags/rust-compiler/). To give feedback on the compiler, or to keep up with its development, see the [RFC for a new compiler for Astro](https://github.com/withastro/roadmap/discussions/1306) for more information and discussion.
+
+### Patch Changes
+
+- [#15565](https://github.com/withastro/astro/pull/15565) [`30cd6db`](https://github.com/withastro/astro/commit/30cd6dbebe771efb6f71dcff7e6b44026fad6797) Thanks [@ematipico](https://github.com/ematipico)! - Fixes an issue where the use of the Astro internal logger couldn't work with Cloudflare Vite plugin.
+
+- [#15605](https://github.com/withastro/astro/pull/15605) [`f6473fd`](https://github.com/withastro/astro/commit/f6473fd45b74291e1a038f2f4142eb61a932d01d) Thanks [@ascorbic](https://github.com/ascorbic)! - Improves `.astro` component SSR rendering performance by up to 2x.
+
+  This includes several optimizations to the way that Astro generates and renders components on the server. These are mostly micro-optimizations, but they add up to a significant improvement in performance. Most pages will benefit, but pages with many components will see the biggest improvement, as will pages with lots of strings (e.g. text-heavy pages with lots of HTML elements).
+
+- [#15514](https://github.com/withastro/astro/pull/15514) [`999a7dd`](https://github.com/withastro/astro/commit/999a7dd1f2913ea04e4f18f3557e8363edef45a8) Thanks [@veeceey](https://github.com/veeceey)! - Fixes font flash (FOUT) during ClientRouter navigation by preserving inline `<style>` elements and font preload links in the head during page transitions.
+
+  Previously, `@font-face` declarations from the `<Font>` component were removed and re-inserted on every client-side navigation, causing the browser to re-evaluate them.
+
+- [#15580](https://github.com/withastro/astro/pull/15580) [`a92333c`](https://github.com/withastro/astro/commit/a92333cb48291008dc08afd0da9e1bb349443934) Thanks [@ematipico](https://github.com/ematipico)! - Fixes a build error when generating projects with a large number of static routes
+
+- [#15565](https://github.com/withastro/astro/pull/15565) [`30cd6db`](https://github.com/withastro/astro/commit/30cd6dbebe771efb6f71dcff7e6b44026fad6797) Thanks [@ematipico](https://github.com/ematipico)! - Fixes an issue where the use of the `Code` component would result in an unexpected error.
+
+- [#15585](https://github.com/withastro/astro/pull/15585) [`98ea30c`](https://github.com/withastro/astro/commit/98ea30c56d6d317d76e2290ed903f11961204714) Thanks [@matthewp](https://github.com/matthewp)! - Add a default body size limit for server actions to prevent oversized requests from exhausting memory.
+
+- [#15565](https://github.com/withastro/astro/pull/15565) [`30cd6db`](https://github.com/withastro/astro/commit/30cd6dbebe771efb6f71dcff7e6b44026fad6797) Thanks [@ematipico](https://github.com/ematipico)! - Fixes an issue where the new Astro v6 development server didn't log anything when navigating the pages.
+
+- [#15591](https://github.com/withastro/astro/pull/15591) [`1ed07bf`](https://github.com/withastro/astro/commit/1ed07bf85c07a641c255ebea28fb633d60fca1c0) Thanks [@renovate](https://github.com/apps/renovate)! - Upgrades `devalue` to v5.6.3
+
+- [#15586](https://github.com/withastro/astro/pull/15586) [`35bc814`](https://github.com/withastro/astro/commit/35bc81428b7fd08d8d7249c58666fc13e9609d90) Thanks [@matthewp](https://github.com/matthewp)! - Fixes an issue where allowlists were not being enforced when handling remote images
+
 ## 6.0.0-beta.14
 
 ### Patch Changes
